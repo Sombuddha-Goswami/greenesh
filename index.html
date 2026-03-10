@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Greenesh — Discover products crafted with purpose. Browse our collection and share your feedback.">
+  <title>Greenesh — Products Crafted with Purpose</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">G</span>
+        Greenesh
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#products">Products</a>
+        <a href="#feedback">Feedback</a>
+        <a href="admin.html" class="nav-cta">Admin</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Now Available
+        </div>
+        <h1 class="hero-title">
+          Products Crafted<br>with <span class="highlight">Purpose</span>
+        </h1>
+        <p class="hero-description">
+          Welcome to Greenesh — where every product is designed to inspire,
+          empower, and bring joy to your life. Explore our curated collection
+          and let us know what you think.
+        </p>
+        <div class="hero-actions">
+          <a href="#products" class="btn btn-primary">Explore Products ↓</a>
+          <a href="#feedback" class="btn btn-secondary">Share Feedback</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">✦ Our Products</div>
+        <h2 class="section-title">Explore Our Collection</h2>
+        <p class="section-subtitle">
+          Each product is thoughtfully created to deliver value and delight.
+          Browse through our growing collection.
+        </p>
+      </div>
+      <div class="products-grid stagger-children" id="productsGrid">
+        <!-- Loading state -->
+        <div class="loading-state" id="loadingState">
+          <div class="loading-spinner"></div>
+          <p>Loading products...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback Section -->
+  <section class="section feedback-section" id="feedback">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">💬 We're Listening</div>
+        <h2 class="section-title">Share Your Feedback</h2>
+        <p class="section-subtitle">
+          Your thoughts matter to us. Help us improve and create better
+          products by sharing your experience.
+        </p>
+      </div>
+      <div class="feedback-wrapper reveal">
+        <div class="feedback-info">
+          <h3>Why Your Feedback Matters</h3>
+          <p>
+            We believe in building products that truly serve you. Your feedback
+            helps us understand what works, what doesn't, and what you'd love
+            to see next.
+          </p>
+          <div class="feedback-features">
+            <div class="feedback-feature">
+              <div class="icon">🎯</div>
+              <span>Help shape future products</span>
+            </div>
+            <div class="feedback-feature">
+              <div class="icon">💡</div>
+              <span>Suggest new ideas and features</span>
+            </div>
+            <div class="feedback-feature">
+              <div class="icon">⚡</div>
+              <span>Get responses within 24 hours</span>
+            </div>
+          </div>
+        </div>
+        <div class="feedback-form-card">
+          <form id="feedbackForm">
+            <div class="form-group">
+              <label class="form-label" for="name">Your Name</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Your Feedback</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Tell us what you think..."
+                required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submitBtn">Send Feedback →</button>
+            <div class="form-status" id="formStatus"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-icon">G</span>
+            Greenesh
+          </a>
+          <p>Products crafted with purpose, designed to inspire and empower your everyday life.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <a href="#products">Products</a>
+          <a href="#feedback">Feedback</a>
+          <a href="admin.html">Admin Panel</a>
+        </div>
+        <div class="footer-column">
+          <h4>Connect</h4>
+          <a href="#" target="_blank">Twitter / X</a>
+          <a href="#" target="_blank">Instagram</a>
+          <a href="#" target="_blank">Email Us</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Greenesh. All rights reserved.</span>
+        <span>Made with 💚</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

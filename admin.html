@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenesh — Admin Panel</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <div class="login-logo">
+                <span class="logo-icon">G</span>
+                <h1>Greenesh</h1>
+                <p>Admin Panel</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-input" placeholder="admin@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-input" placeholder="Enter password" required>
+                </div>
+                <div class="login-error" id="loginError">Incorrect credentials. Please try again.</div>
+                <button type="submit" class="btn btn-primary btn-full" id="loginBtn">Sign In →</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard" id="adminDashboard" style="display:none;">
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <span class="logo-icon">G</span>
+                <h2>Greenesh <span class="admin-tag">Admin</span></h2>
+            </div>
+            <div class="admin-header-right">
+                <a href="index.html" class="btn btn-secondary btn-sm" target="_blank">👁 View Site</a>
+                <button class="btn btn-secondary btn-sm" id="seedBtn" title="Upload sample products to Firestore">🌱
+                    Seed Products</button>
+                <button class="btn btn-ghost btn-sm" id="logoutBtn">Logout</button>
+            </div>
+        </header>
+
+        <div class="admin-body">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalProducts">0</span>
+                        <span class="stat-label">Total Products</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏷️</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalCategories">0</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalFeedback">0</span>
+                        <span class="stat-label">Feedback</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <div class="section-top">
+                    <h3>Products</h3>
+                    <button class="btn btn-primary btn-sm" id="addProductBtn">+ Add Product</button>
+                </div>
+                <div class="product-table-wrapper">
+                    <table class="product-table" id="productTable">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody"></tbody>
+                    </table>
+                    <div class="empty-state" id="emptyState" style="display:none;">
+                        <p>📦 No products yet. Click "+ Add Product" or "🌱 Seed Products" to get started.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Section -->
+            <div class="admin-section" style="margin-top: 28px;">
+                <div class="section-top">
+                    <h3>Feedback</h3>
+                    <span class="feedback-count" id="feedbackCount"></span>
+                </div>
+                <div id="feedbackList" class="feedback-list">
+                    <div class="empty-state" id="feedbackEmpty">
+                        <p>💬 No feedback yet. Feedback from your visitors will appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add Product</h3>
+                <button class="modal-close" id="modalClose">✕</button>
+            </div>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label class="form-label" for="productName">Product Name *</label>
+                    <input type="text" id="productName" class="form-input" placeholder="e.g. Sacred Mandala Artistry"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="productDescription">Description *</label>
+                    <textarea id="productDescription" class="form-input form-textarea"
+                        placeholder="Describe your product..." required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="productPrice">Price</label>
+                        <input type="text" id="productPrice" class="form-input" placeholder="$9.99">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="productCategory">Category</label>
+                        <input type="text" id="productCategory" class="form-input" placeholder="e.g. Coloring Books">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="productImage">Image URL</label>
+                    <input type="text" id="productImage" class="form-input" placeholder="https://example.com/image.jpg">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="productLink">Product Link</label>
+                    <input type="text" id="productLink" class="form-input"
+                        placeholder="https://amazon.com/your-product">
+                </div>
+                <button type="submit" class="btn btn-primary" id="saveProductBtn">Save Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Dialog -->
+    <div class="confirm-overlay" id="confirmDialog">
+        <div class="confirm-dialog">
+            <h4>Delete Product?</h4>
+            <p>This action cannot be undone. The product will be removed from the database.</p>
+            <div class="confirm-actions">
+                <button class="btn btn-ghost btn-sm" id="confirmCancel">Cancel</button>
+                <button class="btn btn-danger btn-sm" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
